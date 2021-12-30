@@ -1,4 +1,4 @@
-from .models import Category, Cart, CartItem
+from . import models
 from . import views
 
 
@@ -18,5 +18,5 @@ from . import views
 
 
 def menu_links(request):
-	links = Category.objects.all()
+	links = models.Category.objects.all()
 	return dict(links=links)

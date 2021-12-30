@@ -3,29 +3,19 @@ from django.views import generic
 from . import models
 
 
-def home(request, category_slug=None):
-    category_page = None
-    products = None
-    if category_slug != None:
-        category_page = get_object_or_404(models.Category, slug=category_slug)
-        products = models.Product.objects.filter(category=category_page, available=True)
-    else:
-        products = models.Product.objects.all().filter(available=True)
-    return render(request, 'home.html', {'category':category_page, 'products': products})
-
-
 class Index(generic.View):
     template_name = 'home.html'
     category_page = None
     products = None
 
-    def get(self, rq, category_slug=None):
+    def get(self, request, category_slug=None, *args, **kwargs):
         if category_slug:
+            print(category_slug)
             category_page = get_object_or_404(models.Category, slug=category_slug)
-            products = models.Product.objects.filter(calendar=category_page, available=True)
+            self.products = models.Product.objects.filter(category=self.category_page, available=True)
         else:
-            products = models.Product.objects.all().filter(available=True)
-        return render(rq, self.template_name, {'category': self.category_page, 'products': products})
+            self.products = models.Product.objects.all().filter(available=True)
+        return render(request, self.template_name, {'category': self.category_page, 'products': self.products})
 
 
 class About(generic.View):
