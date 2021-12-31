@@ -36,6 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # out lib
+    'crispy_forms',
+    'crispy_bootstrap5',
+    # my app
     'shop',
 ]
 
@@ -64,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'shop.context_processors.menu_links',
+                'shop.context_processors.counter',
             ],
         },
     },
@@ -140,5 +145,6 @@ MEDIA_URL = '/media/'
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 

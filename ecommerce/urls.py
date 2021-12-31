@@ -8,6 +8,9 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/shop/', permanent=True)),
 
 ]
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
 
 #  static_file
 from django.conf import settings
